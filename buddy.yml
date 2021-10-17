@@ -1,6 +1,7 @@
 - pipeline: "aniruddh"
-  on: "CLICK"
-  refs:
-  - "refs/heads/main"
-  priority: "NORMAL"
-  fail_on_prepare_env_warning: true
+    on: "CLICK"
+    refs:
+    - "refs/heads/main"
+    priority: "NORMAL"
+    fetch_all_refs: true
+    fail_on_prepare_env_warning: true
