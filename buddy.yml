@@ -1,7 +1,8 @@
 - pipeline: "aniruddh"
-    on: "CLICK"
+  on: "EVENT"
+  events:
+  - type: "PUSH"
     refs:
     - "refs/heads/main"
-    priority: "NORMAL"
-    fetch_all_refs: true
-    fail_on_prepare_env_warning: true
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
