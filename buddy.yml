@@ -1,13 +1,20 @@
-- action: "Execute: apt-get update && apt-get -y install git"
-    type: "BUILD"
-    working_directory: "/buddy/buddywork"
-    docker_image_name: "library/ubuntu"
-    docker_image_tag: "latest"
-    execute_commands:
-    - "apt-get update && apt-get -y install git"
-    setup_commands:
-    - "apt-get update && apt-get -y install git"
-    volume_mappings:
-    - "/:/buddy/buddywork"
-    cache_base_image: true
-    shell: "BASH"
+- pipeline: "tests"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "*"
+  ref_type: "WILDCARD"
+  trigger_condition: "ALWAYS"
+  actions:
+    - action: "PHP 8.0"
+      type: "BUILD"
+      working_directory: "/buddy/buddy-works-php-api"
+      docker_image_name: "library/php"
+      docker_image_tag: "8.0.9"
+      execute_commands:
+        - "composer install"
+        - "composer tests"
+      setup_commands:
+        - "apt-get update && apt-get install -y git zip"
+        - "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
+      mount_filesystem_path: "/buddy/buddy-works-php-api"
+      shell: "BASH"
+      trigger_condition: "ALWAYS"

@@ -1,0 +1,74 @@
+{
+  "name": "buddy-works/buddy-works-php-api",
+  "type": "library",
+  "description": "Buddy Works SDK for PHP",
+  "keywords": [
+    "buddy",
+    "buddy works",
+    "sdk",
+    "api",
+    "continuous integration",
+    "continuous delivery"
+  ],
+  "homepage": "https://github.com/buddy-works/buddy-works-php-api",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Mike Hankus",
+      "email": "mikeh@buddy.works"
+    },
+    {
+      "name": "Paul Kapala",
+      "email": "paulk@buddy.works"
+    },
+    {
+      "name": "Arkadiusz Kondas",
+      "email": "arkadiusz.kondas@buddy.works"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^0.12",
+    "phpunit/phpunit": "^9.5",
+    "rector/rector": "^0.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Buddy\\": "src/Buddy/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Buddy\\Tests\\": "tests/",
+      "Buddy\\Examples\\": "examples/"
+    }
+  },
+  "scripts": {
+    "analyse": [
+      "@check-cs",
+      "@phpstan"
+    ],
+    "check-cs": [
+      "php-cs-fixer fix --dry-run --diff"
+    ],
+    "fix-cs": [
+      "php-cs-fixer fix"
+    ],
+    "phpstan": [
+      "phpstan analyse src tests --level max"
+    ],
+    "phpunit": [
+      "phpunit --colors=always"
+    ],
+    "tests": [
+      "@check-cs",
+      "@phpstan",
+      "@phpunit"
+    ]
+  }
+}
